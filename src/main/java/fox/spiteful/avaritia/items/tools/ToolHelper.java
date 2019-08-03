@@ -7,6 +7,7 @@
 
 package fox.spiteful.avaritia.items.tools;
 
+import com.gamerforea.eventhelper.util.EventUtils;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -95,6 +96,10 @@ public class ToolHelper {
 
         if(block != null && blk != block)
             return;
+
+        if (EventUtils.cantBreak(player,x, y, z)){
+            return;
+        }
 
         Material mat = world.getBlock(x, y, z).getMaterial();
         if(!world.isRemote && blk != null && !blk.isAir(world, x, y, z)/* && blk.getPlayerRelativeBlockHardness(player, world, x, y, z) > 0*/) {

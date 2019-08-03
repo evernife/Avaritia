@@ -19,13 +19,14 @@ import fox.spiteful.avaritia.crafting.Grinder;
 import fox.spiteful.avaritia.crafting.Mincer;
 import fox.spiteful.avaritia.entity.LudicrousEntities;
 import fox.spiteful.avaritia.gui.GooeyHandler;
+import fox.spiteful.avaritia.integration.ModHookEventHelper;
 import fox.spiteful.avaritia.items.ItemFracturedOre;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = "Avaritia", name = "Avaritia", dependencies = "after:Thaumcraft;after:AWWayofTime;after:Botania")
+@Mod(modid = "Avaritia", name = "Avaritia", dependencies = "after:Thaumcraft;after:AWWayofTime;after:Botania;after:EventHelper")
 public class Avaritia {
     @Instance
     public static Avaritia instance;
@@ -62,6 +63,8 @@ public class Avaritia {
         proxy.prepareForPretty();
         //if(Compat.botan && Config.alfheim)
             //Alfheim.packYourBags();
+
+        ModHookEventHelper.initialize();
     }
 
     @EventHandler

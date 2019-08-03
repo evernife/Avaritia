@@ -26,6 +26,7 @@ public class EntityEndestPearl extends EntityThrowable {
 
 	@Override
 	protected void onImpact(MovingObjectPosition pos) {
+		/*
 		if (pos.entityHit != null)
         {
             pos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0.0F);
@@ -48,6 +49,7 @@ public class EntityEndestPearl extends EntityThrowable {
             
             this.setDead();
         }
+        */
 	}
 
 }

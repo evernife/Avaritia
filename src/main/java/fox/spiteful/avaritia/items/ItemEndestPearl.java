@@ -21,24 +21,27 @@ public class ItemEndestPearl extends ItemEnderPearl implements IHaloRenderItem {
 		this.setCreativeTab(Avaritia.tab);
 	}
 
+	/*
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
-    {
-        if (!player.capabilities.isCreativeMode)
-        {
-        	--stack.stackSize;
-        }
+	{
 
-        world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+		if (!player.capabilities.isCreativeMode)
+		{
+			--stack.stackSize;
+		}
 
-        if (!world.isRemote)
-        {
-            world.spawnEntityInWorld(new EntityEndestPearl(world, player));
-        }
+		world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
-        return stack;
-    }
-	
+		if (!world.isRemote)
+		{
+			world.spawnEntityInWorld(new EntityEndestPearl(world, player));
+		}
+
+		return stack;
+	}
+	*/
+
 	@Override
     public EnumRarity getRarity(ItemStack stack)
     {
