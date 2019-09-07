@@ -7,7 +7,7 @@
 
 package fox.spiteful.avaritia.items.tools;
 
-import com.gamerforea.eventhelper.util.EventUtils;
+import fox.spiteful.avaritia.integration.ModHookEventHelper;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -97,7 +97,7 @@ public class ToolHelper {
         if(block != null && blk != block)
             return;
 
-        if (EventUtils.cantBreak(player,x, y, z)){
+        if (ModHookEventHelper.cantBreak(player,x, y, z)){
             return;
         }
 
