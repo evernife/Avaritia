@@ -2,13 +2,11 @@ package fox.spiteful.avaritia.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import fox.spiteful.avaritia.Config;
-import fox.spiteful.avaritia.tile.TileEntityAutoDireCrafting;
 import fox.spiteful.avaritia.tile.TileEntityCompressor;
 import fox.spiteful.avaritia.tile.TileEntityDireCrafting;
 import fox.spiteful.avaritia.tile.TileEntityNeutron;
+import fox.spiteful.avaritia.tile.TileEntityNeutronTier2;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 
 public class LudicrousBlocks {
@@ -24,6 +22,7 @@ public class LudicrousBlocks {
     public static Block dire_crafting;
     public static Block auto_dire_crafting;
     public static Block neutron_collector;
+    public static Block neutron_collector_tier2;
     public static Block compressor;
 
     public static Block infinitato;
@@ -42,7 +41,9 @@ public class LudicrousBlocks {
         crystal_matrix = GameRegistry.registerBlock(new BlockCrystalMatrix(), "Crystal_Matrix");
         resource_block = GameRegistry.registerBlock(new BlockResource(), ItemBlockResource.class, "Resource_Block");
         neutron_collector = GameRegistry.registerBlock(new BlockNeutronCollector(), "Neutron_Collector");
+        neutron_collector_tier2 = GameRegistry.registerBlock(new BlockNeutronCollectorTier2(), "Neutron_Collector_Tier2");
         GameRegistry.registerTileEntity(TileEntityNeutron.class, "Avaritia_Neutron");
+        GameRegistry.registerTileEntity(TileEntityNeutronTier2.class, "Avaritia_Neutron_Tier2");
         compressor = GameRegistry.registerBlock(new BlockCompressor(), "Neutronium_Compressor");
         GameRegistry.registerTileEntity(TileEntityCompressor.class, "Avaritia_Compressor");
     }

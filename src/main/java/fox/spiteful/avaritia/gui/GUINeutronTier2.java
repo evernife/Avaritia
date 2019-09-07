@@ -1,21 +1,22 @@
 package fox.spiteful.avaritia.gui;
 
-import fox.spiteful.avaritia.tile.TileEntityCompressor;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import fox.spiteful.avaritia.tile.TileEntityNeutronTier2;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public class GUICompressor extends GuiContainer
+@SideOnly(Side.CLIENT)
+public class GUINeutronTier2 extends GuiContainer
 {
-    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("avaritia", "textures/gui/compressor.png");
-    private TileEntityCompressor compressor;
+    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation("avaritia", "textures/gui/neutron_collector_tier2_gui.png");
 
-    public GUICompressor(InventoryPlayer player, TileEntityCompressor machine)
+    public GUINeutronTier2(InventoryPlayer player, TileEntityNeutronTier2 machine)
     {
-        super(new ContainerCompressor(player, machine));
-        compressor = machine;
+        super(new ContainerNeutronTier2(player, machine));
     }
 
     /**
@@ -23,13 +24,8 @@ public class GUICompressor extends GuiContainer
      */
     protected void drawGuiContainerForegroundLayer(int p_146979_1_, int p_146979_2_)
     {
-        String s = StatCollector.translateToLocal("container.neutronium_compressor");
+        String s = StatCollector.translateToLocal("container.neutron_collector_tier2");
         this.fontRendererObj.drawString(s, this.xSize / 2 - this.fontRendererObj.getStringWidth(s) / 2, 6, 4210752);
-        if(compressor.getProgress() > 0) {
-            s = compressor.getProgress() + " / " + compressor.getTarget();
-            this.fontRendererObj.drawString(s, 41, 49, 4210752);
-            this.fontRendererObj.drawString(compressor.getIngredient(), 41, 60, 4210752);
-        }
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
@@ -40,11 +36,6 @@ public class GUICompressor extends GuiContainer
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-
-        if(compressor.getProgress() > 0){
-            int i1 = compressor.getProgress() * 24 / compressor.getTarget();
-            this.drawTexturedModalRect(k + 79, l + 26, 176, 14, i1 + 1, 16);
-        }
 
     }
 }

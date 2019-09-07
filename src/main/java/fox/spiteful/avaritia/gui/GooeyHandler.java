@@ -1,10 +1,7 @@
 package fox.spiteful.avaritia.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import fox.spiteful.avaritia.tile.TileEntityAutoDireCrafting;
-import fox.spiteful.avaritia.tile.TileEntityCompressor;
-import fox.spiteful.avaritia.tile.TileEntityDireCrafting;
-import fox.spiteful.avaritia.tile.TileEntityNeutron;
+import fox.spiteful.avaritia.tile.*;
 import net.minecraft.client.gui.inventory.GuiCrafting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -23,6 +20,8 @@ public class GooeyHandler implements IGuiHandler {
             return new GUICompressor(player.inventory, (TileEntityCompressor)world.getTileEntity(x, y, z));
         else if(ID == 4)
             return new GUIAutoExtremeCrafting(player.inventory, world, x, y, z, (TileEntityAutoDireCrafting)world.getTileEntity(x, y, z));
+        else if(ID == 5)
+            return new GUINeutronTier2(player.inventory, (TileEntityNeutronTier2) world.getTileEntity(x, y, z));
         return null;
     }
 
@@ -38,6 +37,8 @@ public class GooeyHandler implements IGuiHandler {
             return new ContainerCompressor(player.inventory, (TileEntityCompressor)world.getTileEntity(x, y, z));
         else if(ID == 4)
             return new ContainerAutoExtremeCrafting(player.inventory, world, x, y, z, (TileEntityAutoDireCrafting)world.getTileEntity(x, y, z));
+        else if(ID == 5)
+            return new ContainerNeutronTier2(player.inventory, (TileEntityNeutronTier2) world.getTileEntity(x, y, z));
         return null;
     }
 }
