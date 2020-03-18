@@ -12,6 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fox.spiteful.avaritia.achievements.Achievements;
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
+import fox.spiteful.avaritia.commands.CMDAvaritiaTweakerRecipeMaker;
 import fox.spiteful.avaritia.compat.Compat;
 //import fox.spiteful.avaritia.compat.botania.alfheim.Alfheim;
 import fox.spiteful.avaritia.crafting.Gregorizer;
@@ -24,6 +25,7 @@ import fox.spiteful.avaritia.items.ItemFracturedOre;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = "Avaritia", name = "Avaritia", dependencies = "after:Thaumcraft;after:AWWayofTime;after:Botania;after:EventHelper")
@@ -90,5 +92,8 @@ public class Avaritia {
         Achievements.achieve();
         PotionHelper.healthInspection();
         proxy.theAfterPretty();
+        if (event.getSide() == Side.CLIENT){
+            ClientCommandHandler.instance.registerCommand(new CMDAvaritiaTweakerRecipeMaker());
+        }
     }
 }
