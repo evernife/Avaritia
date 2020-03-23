@@ -25,7 +25,7 @@ public class ItemResource extends Item implements IHaloRenderItem {
 
     private static final String[] types = new String[]{"diamond_lattice", "crystal_matrix_ingot", "neutron_pile",
             "neutron_nugget", "neutronium_ingot", "infinity_catalyst", "infinity_ingot", "record_fragment", "starfuel",
-            "neutronium_gear"};
+            "neutronium_gear", "might_head"};
 
     @SideOnly(Side.CLIENT)
     public IIcon[] icons;
@@ -94,6 +94,7 @@ public class ItemResource extends Item implements IHaloRenderItem {
             case 4:
             case 8:
             case 9:
+            case 10:
                 return EnumRarity.rare;
             case 5:
                 return EnumRarity.epic;
@@ -108,7 +109,17 @@ public class ItemResource extends Item implements IHaloRenderItem {
 	@SideOnly(Side.CLIENT)
 	public boolean drawHalo(ItemStack stack) {
 		int meta = stack.getItemDamage();
-		return (meta >= 2 && meta <= 6) || meta >= 8;
+		switch (meta){
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 8:
+            case 9:
+                return true;
+        }
+        return false;
 	}
 
 	@Override

@@ -2,10 +2,7 @@ package fox.spiteful.avaritia.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import fox.spiteful.avaritia.Config;
-import fox.spiteful.avaritia.tile.TileEntityCompressor;
-import fox.spiteful.avaritia.tile.TileEntityDireCrafting;
-import fox.spiteful.avaritia.tile.TileEntityNeutron;
-import fox.spiteful.avaritia.tile.TileEntityNeutronTier2;
+import fox.spiteful.avaritia.tile.*;
 import net.minecraft.block.Block;
 
 
@@ -23,6 +20,8 @@ public class LudicrousBlocks {
     public static Block auto_dire_crafting;
     public static Block neutron_collector;
     public static Block neutron_collector_tier2;
+    public static Block star_condenser;
+    public static Block star_condenser_tier2;
     public static Block compressor;
 
     public static Block infinitato;
@@ -44,6 +43,10 @@ public class LudicrousBlocks {
         neutron_collector_tier2 = GameRegistry.registerBlock(new BlockNeutronCollectorTier2(), "Neutron_Collector_Tier2");
         GameRegistry.registerTileEntity(TileEntityNeutron.class, "Avaritia_Neutron");
         GameRegistry.registerTileEntity(TileEntityNeutronTier2.class, "Avaritia_Neutron_Tier2");
+        star_condenser = GameRegistry.registerBlock(new BlockStarCondenser(), "Star_Condenser");
+        star_condenser_tier2 = GameRegistry.registerBlock(new BlockStarCondenserTier2(), "Star_Condenser_Tier2");
+        GameRegistry.registerTileEntity(TileEntityStarCondenser.class, "Avaritia_StarCondenser");
+        GameRegistry.registerTileEntity(TileEntityStarCondenserTier2.class, "Avaritia_StarCondenser_Tier2");
         compressor = GameRegistry.registerBlock(new BlockCompressor(), "Neutronium_Compressor");
         GameRegistry.registerTileEntity(TileEntityCompressor.class, "Avaritia_Compressor");
     }

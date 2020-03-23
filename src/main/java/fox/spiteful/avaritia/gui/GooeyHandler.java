@@ -22,6 +22,10 @@ public class GooeyHandler implements IGuiHandler {
             return new GUIAutoExtremeCrafting(player.inventory, world, x, y, z, (TileEntityAutoDireCrafting)world.getTileEntity(x, y, z));
         else if(ID == 5)
             return new GUINeutronTier2(player.inventory, (TileEntityNeutronTier2) world.getTileEntity(x, y, z));
+        else if(ID == 6)
+            return new GUIStarCondenser(player.inventory, (TileEntityStarCondenser) world.getTileEntity(x, y, z));
+        else if(ID == 7)
+            return new GUIStarCondenserTier2(player.inventory, (TileEntityStarCondenserTier2) world.getTileEntity(x, y, z));
         return null;
     }
 
@@ -39,6 +43,10 @@ public class GooeyHandler implements IGuiHandler {
             return new ContainerAutoExtremeCrafting(player.inventory, world, x, y, z, (TileEntityAutoDireCrafting)world.getTileEntity(x, y, z));
         else if(ID == 5)
             return new ContainerNeutronTier2(player.inventory, (TileEntityNeutronTier2) world.getTileEntity(x, y, z));
+        else if(ID == 6)
+            return new ContainerStarCondenser(player.inventory, (TileEntityStarCondenser) world.getTileEntity(x, y, z));
+        else if(ID == 7)
+            return new ContainerStarCondenserTier2(player.inventory, (TileEntityStarCondenserTier2) world.getTileEntity(x, y, z));
         return null;
     }
 }

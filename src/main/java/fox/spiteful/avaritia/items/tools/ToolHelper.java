@@ -7,7 +7,7 @@
 
 package fox.spiteful.avaritia.items.tools;
 
-import fox.spiteful.avaritia.integration.ModHookEventHelper;
+import fox.spiteful.avaritia.compat.eventhelper.ModHookEventHelper;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,10 +24,8 @@ import net.minecraft.world.World;
 import java.util.*;
 import java.util.Map.Entry;
 
-import fox.spiteful.avaritia.Lumberjack;
 import fox.spiteful.avaritia.items.ItemMatterCluster;
 import fox.spiteful.avaritia.items.ItemStackWrapper;
-import org.apache.logging.log4j.Level;
 
 public class ToolHelper {
 

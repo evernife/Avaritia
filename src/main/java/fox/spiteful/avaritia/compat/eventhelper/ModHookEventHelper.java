@@ -1,4 +1,4 @@
-package fox.spiteful.avaritia.integration;
+package fox.spiteful.avaritia.compat.eventhelper;
 
 import com.gamerforea.eventhelper.util.EventUtils;
 import cpw.mods.fml.common.Loader;

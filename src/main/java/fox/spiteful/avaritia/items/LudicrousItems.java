@@ -27,6 +27,9 @@ public class LudicrousItems {
      * 5 = Infinity Catalyst,
      * 6 = Infinity Ingot,
      * 7 = Record Fragment
+     * 8 = Star Fuel
+     * 9 = Neutronium Gear
+     * 10 = Might Head
      */
     public static Item resource;
 

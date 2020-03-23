@@ -15,12 +15,14 @@ import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import fox.spiteful.avaritia.commands.CMDAvaritiaTweakerRecipeMaker;
 import fox.spiteful.avaritia.compat.Compat;
 //import fox.spiteful.avaritia.compat.botania.alfheim.Alfheim;
+import fox.spiteful.avaritia.compat.extrautilities.ModHookExtraUtilities;
+import fox.spiteful.avaritia.compat.magicalcrops.ModHookMagicalCrops;
 import fox.spiteful.avaritia.crafting.Gregorizer;
 import fox.spiteful.avaritia.crafting.Grinder;
 import fox.spiteful.avaritia.crafting.Mincer;
 import fox.spiteful.avaritia.entity.LudicrousEntities;
 import fox.spiteful.avaritia.gui.GooeyHandler;
-import fox.spiteful.avaritia.integration.ModHookEventHelper;
+import fox.spiteful.avaritia.compat.eventhelper.ModHookEventHelper;
 import fox.spiteful.avaritia.items.ItemFracturedOre;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import net.minecraft.creativetab.CreativeTabs;
@@ -67,6 +69,8 @@ public class Avaritia {
             //Alfheim.packYourBags();
 
         ModHookEventHelper.initialize();
+        ModHookExtraUtilities.initialize();
+        ModHookMagicalCrops.initialize();
     }
 
     @EventHandler

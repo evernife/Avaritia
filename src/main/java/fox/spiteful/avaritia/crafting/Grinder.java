@@ -229,7 +229,8 @@ public class Grinder {
         CompressorManager.addRecipe(new ItemStack(LudicrousItems.singularity, 1, 2), 400, new ItemStack(Blocks.lapis_block, 1));
         CompressorManager.addRecipe(new ItemStack(LudicrousItems.singularity, 1, 3), 500, new ItemStack(Blocks.redstone_block, 1));
         CompressorManager.addRecipe(new ItemStack(LudicrousItems.singularity, 1, 4), 300, new ItemStack(Blocks.quartz_block, 1));
-        CompressorManager.addExactRecipe(new ItemStack(LudicrousBlocks.neutron_collector_tier2)         , 64, new ItemStack(LudicrousBlocks.neutron_collector,1));
+        CompressorManager.addExactRecipe(new ItemStack(LudicrousBlocks.neutron_collector_tier2)        , 64, new ItemStack(LudicrousBlocks.neutron_collector,1));
+        CompressorManager.addExactRecipe(new ItemStack(LudicrousItems.resource,1,10), 300, new ItemStack(Items.skull,1,1));
 
 
         if(Config.endStone)
