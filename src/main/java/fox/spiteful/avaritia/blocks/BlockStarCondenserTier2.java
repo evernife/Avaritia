@@ -30,7 +30,7 @@ public class BlockStarCondenserTier2 extends BlockContainer {
         super(Material.iron);
         setStepSound(Block.soundTypeMetal);
         setHardness(20.0F);
-        setBlockName("star_condenser");
+        setBlockName("star_condenser_tier2");
         setHarvestLevel("pickaxe", 3);
         setCreativeTab(Avaritia.tab);
     }

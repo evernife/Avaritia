@@ -1,6 +1,7 @@
 package fox.spiteful.avaritia.tile;
 
-import fox.spiteful.avaritia.compat.extrautilities.ModHookExtraUtilities;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import fox.spiteful.avaritia.compat.magicalcrops.ModHookMagicalCrops;
 import fox.spiteful.avaritia.items.LudicrousItems;
 import net.minecraft.entity.item.EntityItem;
@@ -21,10 +22,6 @@ public class TileEntityStarCondenser extends TileLudicrous implements IInventory
     private int progress = 0;
     private int charge = 0;
 
-    public int getProgress() {
-        return progress;
-    }
-
     public int getCharge() {
         return charge;
     }
@@ -33,51 +30,69 @@ public class TileEntityStarCondenser extends TileLudicrous implements IInventory
         return might_heads != null && might_heads.getItem() == LudicrousItems.resource && might_heads.getItemDamage() == 10;
     }
 
+    private boolean packet = true;
+    private int particleCount = 0;
     @Override
     public void updateEntity(){
-        if (charge == 0){
-            if (decrStackSize(0,1) != null){
-                charge = 100;
-            }else {
-                return;
+        if (worldObj.isRemote && this.charge > 0){
+            particleCount++;
+            if (particleCount >= 20){
+                particleCount = 0;
+                spawnParticlesAbove();
             }
-        }
-        if(++progress >= 1280){
-            charge--;
-            progress = 0;
-            dropBlocksAbove();
-            markDirty();
+        }else {
+            if (charge == 0){
+                if (decrStackSize(0,1) != null){
+                    charge = 100;
+                    packet = true;
+                }else {
+                    return;
+                }
+            }
+            if(++progress >= 1400){
+                charge--;
+                progress = 0;
+                dropBlocksAbove();
+                markDirty();
+                packet = true;
+            }
+
+            if(packet) {
+                VanillaPacketDispatcher.dispatchTEToNearbyPlayers(this);
+                packet = false;
+            }
         }
     }
 
+    @SideOnly(Side.CLIENT)
+    public void spawnParticlesAbove(){
+        double centerX = this.xCoord + 0.5D;
+        double centerY = this.yCoord + 1.5D; //AboveCenter
+        double centerZ = this.zCoord + 0.5D;
+        int points = 8; //amount of points to be generated
+        for (int i = 0; i < 360; i += 360/points) {
+            double angle = (i * Math.PI / 180);
+            double x = Math.cos(angle) * 0.5;
+            double z = Math.sin(angle) * 0.5;
+            worldObj.spawnParticle("portal", centerX + x, centerY - 0.2, centerZ + z, 0, 0, 0);
+            worldObj.spawnParticle("portal", centerX + x, centerY - 0.2, centerZ + z, 0, 0, 0);
+        }
+    }
+
+    @SideOnly(Side.SERVER)
     public void dropBlocksAbove(){
         double centerX = this.xCoord + 0.5D;
         double centerY = this.yCoord + 1.5D; //AboveCenter
         double centerZ = this.zCoord + 0.5D;
-        if (worldObj.isRemote){
-            int points = 8; //amount of points to be generated
-            for (int i = 0; i < 360; i += 360/points) {
-                double angle = (i * Math.PI / 180);
-                double x = Math.cos(angle) * 0.5;
-                double z = Math.sin(angle) * 0.5;
-                worldObj.spawnParticle("portal", centerX + x, centerY - 0.2, centerZ + z, 0, 0, 0);
-                worldObj.spawnParticle("portal", centerX + x, centerY - 0.2, centerZ + z, 0, 0, 0);
-            }
-        }else {
-            List<EntityItem> drops = new ArrayList<>();
-            drops.add(new EntityItem(this.worldObj, centerX, centerY, centerZ, new ItemStack(Items.nether_star,1,0)));
-            if (ModHookMagicalCrops.isEnabled()){
-                drops.add(new EntityItem(this.worldObj, centerX, centerY, centerZ, new ItemStack(ModHookMagicalCrops.getZivicioItem(),2,0)));
-            }
-            if (ModHookExtraUtilities.isEnabled()){
-                drops.add(new EntityItem(this.worldObj, centerX, centerY, centerZ, new ItemStack(ModHookMagicalCrops.getZivicioItem(),2,0)));
-                drops.add(new EntityItem(this.worldObj, this.xCoord + 0.5, this.yCoord + 1, this.zCoord + 0.5, new ItemStack(ModHookExtraUtilities.getSigilItem(),1,0)));
-            }
-            for (EntityItem drop : drops) {
-                this.getWorldObj().spawnEntityInWorld(drop);
-            }
-            this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 1, this.zCoord + 0.5, 15));
+        List<EntityItem> drops = new ArrayList<>();
+        drops.add(new EntityItem(this.worldObj, centerX, centerY, centerZ, new ItemStack(Items.nether_star,1,0)));
+        if (ModHookMagicalCrops.isEnabled()){
+            drops.add(new EntityItem(this.worldObj, centerX, centerY, centerZ, new ItemStack(ModHookMagicalCrops.getZivicioItem(),2,0)));
         }
+        for (EntityItem drop : drops) {
+            this.getWorldObj().spawnEntityInWorld(drop);
+        }
+        this.worldObj.spawnEntityInWorld(new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 1, this.zCoord + 0.5, 15));
     }
 
     public int getFacing(){
